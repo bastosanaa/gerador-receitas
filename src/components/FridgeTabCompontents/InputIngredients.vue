@@ -2,14 +2,27 @@
     <div id="inputIngredients">
         <h2>Adicione novos ingredientes a sua geladeira</h2>
         <img src="@/assets/fridge.png" alt="">
-        <input type="text">
-        <button>Adicionar</button>
+        <div>
+            <input type="text" v-model="inputValue">
+            <button @click="addNewIngredient()">+</button>
+        </div>
     </div>
 </template>
 
 <script>
-export default {
+import { EventBus } from '@/eventBus';
 
+export default {
+    data() {
+        return {
+            inputValue: ''
+        }
+    },
+    methods: {
+        addNewIngredient() {
+            EventBus.$emit('newIngredient', this.inputValue)
+        } 
+    }
 }
 </script>
 
@@ -29,6 +42,11 @@ export default {
         padding: 0.5rem;
         width: 240px;
         border-block-color: var();
+    }
+
+    button {
+        padding: 0.5rem;
+        font-weight: 600;
     }
 
 

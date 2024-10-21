@@ -40,9 +40,14 @@ export default {
 
   #app {
     font-family: "Roboto", sans-serif;
-    background-color: var(light-blue-color);
+    background-color: #C4E1F6;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
+  }
+
+  .app-content {
+    height: 100%;
   }
 
 </style>

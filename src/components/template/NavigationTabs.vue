@@ -26,7 +26,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   #navigationTabs {
     background-color: #789DBC ;
     width: 100%;
