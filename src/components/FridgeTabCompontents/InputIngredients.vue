@@ -26,7 +26,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     #inputIngredients {
         box-sizing: border-box;
         display: flex;
