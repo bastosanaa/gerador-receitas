@@ -1,8 +1,8 @@
 <template>
-  <div id="ItemIngredient">
-    <p>{{ ingredient }}</p>
-    <img src="@/assets/close.svg" alt="" @click="removeItem" :style="{width: '1.5rem', height: '1.5rem', cursor: 'pointer'}">
-  </div>
+    <div id="ItemIngredient">
+        <p>{{ ingredient }}</p>
+        <img src="@/assets/close.svg" alt="" @click="removeIngredient" :style="{width: '1.5rem', height: '1.5rem', cursor: 'pointer'}">
+    </div>
 </template>
 
 <script>
@@ -14,8 +14,8 @@ export default {
         }
     },
     methods: {
-        removeItem() {
-            this.$emit('remove', this.ingredient)
+        removeIngredient() {
+            this.$store.dispatch('removeIngredient', this.ingredient);
         }
     }
 }

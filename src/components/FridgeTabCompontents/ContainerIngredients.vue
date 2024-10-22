@@ -2,42 +2,28 @@
     <div id="containerIngredients">
         <p :style="{fontSize: '1.5rem', }">Seus ingredientes:</p>
         <ul>
-            <ItemIngredient @remove="removeItem" v-for="(item, index) in ingredients" :key="index" :ingredient="item"></ItemIngredient>
+            <ItemIngredient v-for="(ingredient, index) in ingredients" :key="index" :ingredient="ingredient"></ItemIngredient>
         </ul>
     </div>
 </template>
 
 <script>
-import { EventBus } from '@/eventBus';
+// import { EventBus } from '@/eventBus';
 import ItemIngredient from './ItemIngredient.vue';
 
 export default {
     components: {
         ItemIngredient
     },
-    data() {
-        return {
-            ingredients : []
+    computed: {
+        ingredients() {
+            return this.$store.getters.allIngredients;
         }
     },
-    mounted() {
-        EventBus.$on('newIngredient', ingredient => {
-            this.ingredients.push(ingredient)
-            localStorage.setItem('ingredients', JSON.stringify(this.ingredients))
-        })
-        
-        const storedIngredients = localStorage.getItem('ingredients')
-        if (storedIngredients) {
-            this.ingredients = JSON.parse(storedIngredients)
-        }
-    },
-    methods: {
-        removeItem(item) {
-            
-            this.ingredients = this.ingredients.filter(i => i != item);
-            localStorage.setItem('ingredients', JSON.stringify(this.ingredients))
-        }
+    created() {
+        this.$store.dispatch('loadIngredients');
     }
+
 }
 </script>
 

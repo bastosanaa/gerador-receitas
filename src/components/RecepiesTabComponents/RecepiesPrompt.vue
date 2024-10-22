@@ -3,12 +3,13 @@
         <div class="prompt-container">
             <h1>Gere receitas apartir de itens da sua geladeira</h1>
             <ToggleSwitch  v-for="(option, index) in extraOptions" :key="index" :falseOption="option[0]" :trueOption="option[1]"></ToggleSwitch>
-            <button>Gerar receitas✨</button>
+            <button @click="generateRecepies">Gerar receitas✨</button>
         </div>
     </div>
 </template>
 
 <script>
+import { generateText } from '@/text_generation';
 import ToggleSwitch from '../widgets/ToggleSwitch.vue';
 export default {
     components: {
@@ -20,6 +21,16 @@ export default {
                 ['salgado', 'doce'],
                 ['não vegetariano', 'vegetariano']
             ]
+        }
+    },
+    methods: {
+        async generateRecepies() {
+            try {
+                console.log(await generateText())
+            } catch {
+                console.log('erro ao gerar codigo');
+                
+            }
         }
     }
 }

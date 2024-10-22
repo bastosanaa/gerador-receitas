@@ -22,7 +22,7 @@ export default {
   },
   data() {
     return {
-      tabSelected: 'FridgeTab'
+      tabSelected: 'FridgeTab',
     }
   },
   computed: {

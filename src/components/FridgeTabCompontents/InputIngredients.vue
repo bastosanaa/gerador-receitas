@@ -3,24 +3,24 @@
         <h2>Adicione novos ingredientes a sua geladeira</h2>
         <img src="@/assets/fridge.png" alt="">
         <div>
-            <input type="text" v-model="inputValue">
-            <button @click="addNewIngredient()">+</button>
+            <input type="text" v-model="newIngredient">
+            <button @click="addNewIngredient">+</button>
         </div>
     </div>
 </template>
 
 <script>
-import { EventBus } from '@/eventBus';
-
 export default {
     data() {
         return {
-            inputValue: ''
+            newIngredient: ''
         }
     },
     methods: {
-        addNewIngredient() {
-            EventBus.$emit('newIngredient', this.inputValue)
+        addNewIngredient() { 
+            if (this.newIngredient) {                
+                this.$store.dispatch('addIngredient', this.newIngredient)
+            }
         } 
     }
 }
