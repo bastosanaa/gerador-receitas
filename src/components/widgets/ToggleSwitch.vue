@@ -1,8 +1,8 @@
 <template>
-    <div id="toggle-switch" @click="selected = !selected">
+    <div id="toggle-switch">
         <p>{{ falseOption }}</p>
         <label class="switch">
-            <input type="checkbox">
+            <input type="checkbox" @change="toggle" v-model="selected">
             <span class="slider round"></span>
         </label>
         <p>{{ trueOption }}</p>
@@ -10,6 +10,7 @@
 </template>
 
 <script>
+
 export default {
     props: {
         falseOption : {
@@ -18,11 +19,15 @@ export default {
         trueOption: {
             type: String
         }
-
     },
     data() {
         return {
             selected: false
+        }
+    },
+    methods: {
+        toggle() {
+            this.$emit('toggle');
         }
     }
 }

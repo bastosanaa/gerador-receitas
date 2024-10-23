@@ -2,7 +2,8 @@
     <div id="recepies-prompt">
         <div class="prompt-container">
             <h1>Gere receitas apartir de itens da sua geladeira</h1>
-            <ToggleSwitch  v-for="(option, index) in extraOptions" :key="index" :falseOption="option[0]" :trueOption="option[1]"></ToggleSwitch>
+            <ToggleSwitch :falseOption="'não vegetariano'" @toggle="handleToggle" :trueOption="'vegetariano'"></ToggleSwitch>
+            <ToggleSwitch :falseOption="'salgado'" @toggle="handleToggle('isSweet')" :trueOption="'doce'"></ToggleSwitch>
             <button @click="generateRecepies">Gerar receitas✨</button>
         </div>
     </div>
@@ -17,20 +18,28 @@ export default {
     },
     data() {
         return {
-            extraOptions: [
-                ['salgado', 'doce'],
-                ['não vegetariano', 'vegetariano']
-            ]
+            isVeg: false,
+            isSweet: false
         }
     },
     methods: {
         async generateRecepies() {
+
+            const veg = this.isVeg ? 'vegetariano' : 'não vegetariano'
+            const category = this.isSweet ? 'doce' : 'salgado'
+            
+            const prompt = `me sugira uma receita fácil ${veg} e ${category}`
+            console.log(prompt);
+            
             try {
-                console.log(await generateText())
+                console.log(await generateText(prompt))
             } catch {
                 console.log('erro ao gerar codigo');
                 
             }
+        },
+        handleToggle(varibleName) {
+            this[varibleName] = !this[varibleName]
         }
     }
 }
@@ -52,6 +61,7 @@ export default {
     padding: 5rem 3rem;
     border: 1px solid black;
     border-radius: 15px;
+    background-color: #d8ecf8;
 }
 
 button {

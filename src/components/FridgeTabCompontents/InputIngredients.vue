@@ -1,10 +1,12 @@
 <template>
     <div id="inputIngredients">
-        <h2>Adicione novos ingredientes a sua geladeira</h2>
-        <img src="@/assets/fridge.png" alt="">
-        <div>
-            <input type="text" v-model="newIngredient">
-            <button @click="addNewIngredient">+</button>
+        <div id="container">
+            <h2>Adicione novos ingredientes <br> a sua geladeira</h2>
+            <img src="@/assets/fridge.png" alt="">
+            <div>
+                <input type="text" v-model="newIngredient" placeholder="manteiga...">
+                <button @click="addNewIngredient">+</button>
+            </div>
         </div>
     </div>
 </template>
@@ -29,19 +31,33 @@ export default {
 <style scoped>
     #inputIngredients {
         box-sizing: border-box;
+        padding: 1rem;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #container {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 1rem;
         gap: 1rem;
-        width: 50%;
-        height: 100%;
+        padding: 0 0 10rem 0;
+
     }
+
+    h2 {
+        text-align: center;
+        line-height: 2rem;
+    }
+
     input {
         padding: 0.5rem;
         width: 240px;
         border-block-color: var();
+        margin-top: 1rem;
     }
 
     button {
