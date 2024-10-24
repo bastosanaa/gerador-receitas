@@ -2,7 +2,10 @@
     <div id="toggle-switch">
         <p>{{ falseOption }}</p>
         <label class="switch">
-            <input type="checkbox" @change="toggle" v-model="selected">
+            <input type="checkbox" @change="toggle" 
+            
+            
+            >
             <span class="slider round"></span>
         </label>
         <p>{{ trueOption }}</p>

@@ -4,7 +4,7 @@
             <h2>Adicione novos ingredientes <br> a sua geladeira</h2>
             <img src="@/assets/fridge.png" alt="">
             <div>
-                <input type="text" v-model="newIngredient" placeholder="manteiga...">
+                <input type="text" v-model="newIngredient" @keyup.enter="addNewIngredient" placeholder="manteiga...">
                 <button @click="addNewIngredient">+</button>
             </div>
         </div>
@@ -22,6 +22,7 @@ export default {
         addNewIngredient() { 
             if (this.newIngredient) {                
                 this.$store.dispatch('addIngredient', this.newIngredient)
+                this.newIngredient = ''
             }
         } 
     }

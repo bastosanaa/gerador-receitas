@@ -12,6 +12,7 @@ import ContainerIngredients from './components/FridgeTabCompontents/ContainerIng
 import ItemIngredient from './components/FridgeTabCompontents/ItemIngredient.vue';
 import RecepiesPrompt from './components/RecepiesTabComponents/RecepiesPrompt.vue';
 import ToggleSwitch from './components/widgets/ToggleSwitch.vue';
+import RecepiesInstructions from './components/RecepiesTabComponents/RecepiesInstructions.vue';
 
 Vue.config.productionTip = false
 
@@ -23,6 +24,7 @@ Vue.component(ContainerIngredients)
 Vue.component(ItemIngredient)
 Vue.component(RecepiesPrompt)
 Vue.component(ToggleSwitch)
+Vue.component(RecepiesInstructions)
 
 new Vue({
   store,

@@ -32,13 +32,18 @@ export default {
         padding: 1rem;
         width: 50%;
         box-sizing: border-box;
+
     }
 
     ul {
         display: flex;
         gap: 1rem;
-        overflow: hidden;
         width: 100%;
-        /* border: 1px solid black; */
-    }
+        box-sizing: border-box;
+        padding: 1rem;
+        overflow-x: auto;
+        overflow-y: auto;
+        /* border: 1px solid red; */
+        flex-wrap: wrap;
+}
 </style>

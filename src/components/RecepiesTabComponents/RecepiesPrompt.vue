@@ -2,8 +2,8 @@
     <div id="recepies-prompt">
         <div class="prompt-container">
             <h1>Gere receitas apartir de itens da sua geladeira</h1>
-            <ToggleSwitch :falseOption="'não vegetariano'" @toggle="handleToggle" :trueOption="'vegetariano'"></ToggleSwitch>
-            <ToggleSwitch :falseOption="'salgado'" @toggle="handleToggle('isSweet')" :trueOption="'doce'"></ToggleSwitch>
+            <ToggleSwitch :falseOption="'não vegetariano'" @toggle="handleIsVeg" :trueOption="'vegetariano'"></ToggleSwitch>
+            <ToggleSwitch :falseOption="'salgado'" @toggle="handleIsSweet" :trueOption="'doce'"></ToggleSwitch>
             <button @click="generateRecepies">Gerar receitas✨</button>
         </div>
     </div>
@@ -25,21 +25,43 @@ export default {
     methods: {
         async generateRecepies() {
 
+            const fridge = this.$store.getters.allIngredients            
+
             const veg = this.isVeg ? 'vegetariano' : 'não vegetariano'
             const category = this.isSweet ? 'doce' : 'salgado'
             
-            const prompt = `me sugira uma receita fácil ${veg} e ${category}`
-            console.log(prompt);
+            const prompt = `me sugira uma receita fácil ${veg} e ${category}, usando APENAS e UNICAMENTE (mas nao todos necessariamente), os ingredientes: ${fridge.join(', ')}, me de a saida em formato json exatamente nesse formato: {
+                "name": "nome da receita",
+                "description": "descricao breve da receita",
+                "ingredients": [
+                    {
+                        "name": "nome do ingrediente",
+                        "quantity": "quantidade do ingrediente na receita"
+                    }
+                ],
+                "steps" : [
+                    "step", "step", ...
+                ]
+            },
+            me envie apenas o json, sem caracteres extras
+            `
             
             try {
-                console.log(await generateText(prompt))
-            } catch {
-                console.log('erro ao gerar codigo');
+                const generatedText = await generateText(prompt)
+                const data = JSON.parse(generatedText)
+                
+                this.$emit('recepieGenerated', data )
+                
+            } catch(erro) {
+                console.log(erro);
                 
             }
         },
-        handleToggle(varibleName) {
-            this[varibleName] = !this[varibleName]
+        handleIsVeg() {
+            this.isVeg = !this.isVeg
+        },
+        handleIsSweet() {
+            this.isSweet = !this.isSweet
         }
     }
 }
@@ -67,6 +89,10 @@ export default {
 button {
     padding: 1rem;
     font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 6px;
+    border: none ;
+    background-color: #789DBC;
 
 }
 </style>
