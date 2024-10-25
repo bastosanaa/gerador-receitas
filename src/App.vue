@@ -24,9 +24,6 @@ export default {
     return {
       tabSelected: 'FridgeTab',
     }
-  },
-  created() {
-    console.log(process.env.VUE_APP_API_KEY, "KEY");
   }
 }
 </script>
