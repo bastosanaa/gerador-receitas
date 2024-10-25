@@ -81,7 +81,7 @@ export default {
     flex-direction: column;
     align-items: center;
     padding: 5rem 3rem;
-    border: 1px solid black;
+    border: 1px solid #789DBC;
     border-radius: 15px;
     background-color: #d8ecf8;
 }
@@ -93,6 +93,12 @@ button {
     border-radius: 6px;
     border: none ;
     background-color: #789DBC;
-
 }
+@media only screen and (max-width: 720px) {
+    .prompt-container {
+        border: none;
+        margin-bottom: 3rem;
+    }
+}
+
 </style>

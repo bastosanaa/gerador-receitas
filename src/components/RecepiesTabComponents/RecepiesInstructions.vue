@@ -47,6 +47,7 @@ export default {
         height: 85%;
         padding: 2rem 3rem;
         border-radius: 16px;
+        overflow-y: scroll;
         
     }
 
@@ -67,6 +68,14 @@ export default {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+    }
+    @media only screen and (max-width: 720px) {
+        #instructions {
+            padding: 2.5rem 1.5rem;
+        }
+        ul {
+            padding: 1.2rem;
+        }
     }
     
 </style>

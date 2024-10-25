@@ -1,7 +1,9 @@
 <template>
     <div id="recepies-tab">
         <RecepiesPrompt v-show="currentRecepie==''" @recepieGenerated="handleRecepieGenerated"></RecepiesPrompt>
-        <RecepiesInstructions v-if="currentRecepie != ''" @recepieClosed="handleRecepieClosed" :instructions="currentRecepie"></RecepiesInstructions>
+        <keep-alive>
+            <RecepiesInstructions v-if="currentRecepie != ''" @recepieClosed="handleRecepieClosed" :instructions="currentRecepie"></RecepiesInstructions>
+        </keep-alive>
 
     </div>
 </template>
@@ -14,17 +16,17 @@ export default {
         RecepiesPrompt,
         RecepiesInstructions
     },
-    data() {
-        return {
-            currentRecepie: ''
+    computed: {
+        currentRecepie() {
+            return this.$store.state.currentRecepie;
         }
     },
     methods: {
         handleRecepieGenerated(recepie) {
-            this.currentRecepie = recepie
+            this.$store.commit('setCurrentRecepie', recepie)
         },
         handleRecepieClosed() {
-            this.currentRecepie = ''
+            this.$store.commit('clearCurrentRecepie');
         }
     }
 }

@@ -45,5 +45,11 @@ export default {
         overflow-y: auto;
         /* border: 1px solid red; */
         flex-wrap: wrap;
-}
+    }
+    @media only screen and (max-width: 720px) {
+        #containerIngredients {
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+    }
 </style>

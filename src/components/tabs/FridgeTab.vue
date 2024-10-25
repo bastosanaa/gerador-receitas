@@ -21,7 +21,14 @@ export default {
     #fridgeTab{
         height: 100%;
         display: flex;
-
-
     }
+
+    @media only screen and (max-width: 720px) {
+        #fridgeTab {
+            flex-direction: column;
+            align-items: center;
+            overflow-y:  auto;
+        }
+    }
+
 </style>

@@ -5,9 +5,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-      ingredients: []  // Estado inicial com os ingredientes
+        ingredients: [],  // Estado inicial com os ingredientes
+        currentRecepie: ''
     },
     mutations: {
+    //ingredients mutations
     addIngredient(state, ingredient) {
         console.log(state.ingredients);
         
@@ -26,6 +28,13 @@ export default new Vuex.Store({
     setIngredients(state, ingredients) {
         state.ingredients = ingredients;
         localStorage.setItem('ingredients', JSON.stringify(state.ingredients));  // Atualiza localStorage
+    },
+    //current recepie mutations
+    setCurrentRecepie(state, recepie) {
+        state.currentRecepie = recepie;
+    },
+    clearCurrentRecepie(state) {
+        state.currentRecepie = ''
     }
     },
     actions: {

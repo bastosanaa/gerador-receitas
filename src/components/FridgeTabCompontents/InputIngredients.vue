@@ -3,7 +3,7 @@
         <div id="container">
             <h2>Adicione novos ingredientes <br> a sua geladeira</h2>
             <img src="@/assets/fridge.png" alt="">
-            <div>
+            <div class="input-container">
                 <input type="text" v-model="newIngredient" @keyup.enter="addNewIngredient" placeholder="manteiga...">
                 <button @click="addNewIngredient">+</button>
             </div>
@@ -56,9 +56,8 @@ export default {
 
     input {
         padding: 0.5rem;
-        width: 240px;
+        max-width: 240px;
         border-block-color: var();
-        margin-top: 1rem;
     }
 
     button {
@@ -66,5 +65,16 @@ export default {
         font-weight: 600;
     }
 
+    .input-container{
+        display: flex;
+        align-items: center;
+        margin-top: 1rem;
+
+    }
+    @media only screen and (max-width: 720px) {
+        #container {
+            padding: 0;
+        }
+    }
 
 </style>
